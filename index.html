@@ -50,8 +50,6 @@
         </select>
     </div>
 
-    <button onclick="openInNewTab()">Open in Fullscreen</button>
-
     <script>
         let embedUrl = "";
 
@@ -62,7 +60,7 @@
                 const embedType = document.getElementById("embedType").value;
                 if (url) {
                     embedUrl = `https://cloud.beenshub.lol/active/embed.html?url=${encodeURIComponent(url)}`;
-                    alert("URL is set! Click 'Open in Fullscreen' to embed.");
+                    openInNewTab();
                 }
             }
         }
@@ -81,7 +79,7 @@
                 `);
                 newTab.document.close();
             } else {
-                alert("Please enter a valid URL and press Enter first.");
+                alert("Please enter a valid URL.");
             }
         }
 
