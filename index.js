@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function Embedddddddr() {
   const [url, setUrl] = useState("");
-  const embedUrl = `https://vplaza-dev.github.io/active/embed.html?url=${encodeURIComponent(url)}`;
+  const embedUrl = `https:/https://yasdgfterf.github.io/embedddr//active/embed.html?url=${encodeURIComponent(url)}`;
 
   return (
     <div className="flex flex-col items-center p-4 min-h-screen bg-black text-red-500">
