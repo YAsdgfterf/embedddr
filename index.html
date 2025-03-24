@@ -36,6 +36,15 @@
             border: none;
             cursor: pointer;
         }
+        /* Fullscreen button styles */
+        .fullscreen-btn {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +58,11 @@
             <option value="embed">Embed</option>
         </select>
     </div>
+
+    <button onclick="openInNewTab()">Open in Fullscreen</button>
+
+    <!-- Fullscreen button -->
+    <button class="fullscreen-btn" onclick="goFullscreen()">Go Fullscreen</button>
 
     <script>
         let embedUrl = "";
@@ -88,6 +102,19 @@
             const currentUrl = window.location.href;
             document.getElementById("urlInput").value = currentUrl;
         };
+
+        // Go Fullscreen function for the whole page
+        function goFullscreen() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+        }
     </script>
 </body>
 </html>
