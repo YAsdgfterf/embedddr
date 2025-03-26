@@ -36,7 +36,6 @@
             border: none;
             cursor: pointer;
         }
-        /* Fullscreen button styles */
         .fullscreen-btn {
             padding: 10px 20px;
             margin-top: 20px;
@@ -60,26 +59,26 @@
     </div>
 
     <button onclick="openInNewTab()">Open in Fullscreen</button>
-
-    <!-- Fullscreen button -->
     <button class="fullscreen-btn" onclick="goFullscreen()">Go Fullscreen</button>
 
     <script>
         let embedUrl = "";
 
-        // Check if Enter key is pressed
         function checkEnter(event) {
             if (event.key === "Enter") {
-                const url = document.getElementById("urlInput").value;
-                const embedType = document.getElementById("embedType").value;
-                if (url) {
-                    embedUrl = `https://cloud.beenshub.lol/active/embed.html?url=${encodeURIComponent(url)}`;
-                    openInNewTab();
-                }
+                generateEmbedUrl();
+                openInNewTab();
             }
         }
 
-        // Open in a new tab with fullscreen embed
+        function generateEmbedUrl() {
+            const url = document.getElementById("urlInput").value || window.location.href;
+            const embedType = document.getElementById("embedType").value;
+            if (url) {
+                embedUrl = `${window.location.origin}?url=${encodeURIComponent(url)}`;
+            }
+        }
+
         function openInNewTab() {
             if (embedUrl) {
                 const newTab = window.open("", "_blank");
@@ -97,21 +96,18 @@
             }
         }
 
-        // Automatically set the iframe to the current page's URL
         window.onload = function() {
-            const currentUrl = window.location.href;
-            document.getElementById("urlInput").value = currentUrl;
+            document.getElementById("urlInput").value = window.location.href;
         };
 
-        // Go Fullscreen function for the whole page
         function goFullscreen() {
             if (document.documentElement.requestFullscreen) {
                 document.documentElement.requestFullscreen();
-            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+            } else if (document.documentElement.mozRequestFullScreen) {
                 document.documentElement.mozRequestFullScreen();
-            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            } else if (document.documentElement.webkitRequestFullscreen) {
                 document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+            } else if (document.documentElement.msRequestFullscreen) {
                 document.documentElement.msRequestFullscreen();
             }
         }
